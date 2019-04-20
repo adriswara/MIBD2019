@@ -1,0 +1,11 @@
+body {
+    background-image: url("");
+    background-color: rgb(71, 148, 103);
+  }
+
+.container{
+    border-radius: 25px;
+    padding: 5%;
+    margin-top: 17%;
+    background-color: white;
+}
