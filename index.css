@@ -6,6 +6,27 @@ body {
 .container{
     border-radius: 25px;
     padding: 5%;
-    margin-top: 17%;
+    margin-top: 7%;
     background-color: white;
+
 }
+
+.pizzaImage{
+  
+}
+
+.judulAwal{
+  padding-right: -50%;
+  margin-left: 50%;
+}
+
+h1.judulAwal{
+  top: 20 ;
+}
+
+#startButton{
+  padding-right: -50%;
+  margin-left: 50%;
+  
+}
+
