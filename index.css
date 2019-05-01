@@ -2,7 +2,7 @@ body {
     background-image: url("background.jpg");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 135%;
     position: relative;
     background-color: rgb(71, 148, 103);
   }
