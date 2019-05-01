@@ -11,9 +11,17 @@ body {
     border-radius: 25px;
     padding: 5%;
     margin-top: 7%;
-    background-color: rgba(202, 202, 202, 0.911);
+    
 
 }
+
+#welcomeContainer{
+  background-color: rgba(202, 202, 202, 0.911);
+}
+#selectContainer{
+  background-color: whitesmoke;
+}
+
 
 .pizzaImage{
   margin: 0%;
@@ -44,5 +52,7 @@ h1.judulAwal{
   margin-top: -15%;
   margin-bottom: 7%;
 }
-
-
+/* kasir only */
+.btn-product{
+  width: 100%;
+}
