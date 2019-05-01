@@ -1,5 +1,9 @@
 body {
-    background-image: url("");
+    background-image: url("background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
     background-color: rgb(71, 148, 103);
   }
 
@@ -7,12 +11,13 @@ body {
     border-radius: 25px;
     padding: 5%;
     margin-top: 7%;
-    background-color: white;
+    background-color: rgba(202, 202, 202, 0.911);
 
 }
 
 .pizzaImage{
-  
+  margin: 0%;
+  margin-top: -20%;
 }
 
 .judulAwal{
@@ -24,9 +29,20 @@ h1.judulAwal{
   top: 20 ;
 }
 
-#startButton{
-  padding-right: -50%;
-  margin-left: 50%;
+#loginAdmin{
+  
+  margin-left: 60%;
   
 }
+#loginKasir{
+ margin: 0%; 
+ 
+}
+
+#divButton{
+  margin: 0%;
+  margin-top: -15%;
+  margin-bottom: 7%;
+}
+
 
