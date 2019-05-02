@@ -58,5 +58,5 @@ class MySQLDB{
 	}
 }
 
-$db = new MySQLDB("localhost","root","","surveionline");
+$db = new MySQLDB("localhost","root","","pizza");
 ?>
