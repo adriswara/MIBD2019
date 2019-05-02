@@ -37,6 +37,21 @@ h1.judulAwal{
   top: 20 ;
 }
 
+.formLogin{
+  margin-left: 50%;
+}
+
+.username{
+margin: 0%;
+margin-top: -40%;
+}
+
+.pass{
+margin: 0%;
+margin-top: 5%;
+margin-bottom: 5%;
+}
+
 #loginAdmin{
   
   margin-left: 60%;
@@ -56,3 +71,10 @@ h1.judulAwal{
 .btn-product{
   width: 100%;
 }
+.check
+{
+    opacity:0.5;
+	color:#996;
+	
+}
+
