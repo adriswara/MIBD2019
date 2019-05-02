@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="index.css">
-    <script src="index.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/index.js"></script>
     <?php include "mysqlDB.php"; ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -20,7 +20,7 @@
 
     <nav class="navbar navbar-light" style="background-color: #c59579;">
         <a class="navbar-brand" href="index.php">
-            <img class="pizzaImage" src="pizzaretro.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            <img class="pizzaImage" src="asset/pizzaretro.png" width="30" height="30" class="d-inline-block align-top" alt="">
           Pizzay</a>
       </nav>
 
@@ -29,7 +29,7 @@
    <center><h1 class="judulAwal" style="top:-10%" >Selamat datang di Pizzay!!!</h1></center> 
    <center><h3 class="judulAwal">Silahkan Login Dibawah ini</h3></center>
 
-   <img src="pizza.gif" width="300" height="300" alt=""> 
+   <img src="asset/pizza.gif" width="300" height="300" alt=""> 
 
 
 
