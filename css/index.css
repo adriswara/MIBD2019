@@ -7,12 +7,10 @@ body {
     background-color: rgb(71, 148, 103);
   }
 
-.container{
-    border-radius: 25px;
-    padding: 5%;
-    margin-top: 7%;
-    
-
+.containerLuar{
+  border-radius: 25px;
+  padding: 36px;
+  margin-top: 2vh;
 }
 
 #welcomeContainer{
@@ -31,6 +29,7 @@ body {
 .judulAwal{
   padding-right: -50%;
   margin-left: 50%;
+  float:right;
 }
 
 h1.judulAwal{
@@ -136,10 +135,41 @@ div.scrollmenu a:hover {
 /*Page Kasir Pertama*/
 
 .toppingImage{
-  width:262px;
+  width: 144px;
+  height: 130px;
 }
 
 .imageContent{
   display: inline-block;
   margin-right: 20px;
+}
+
+#exTab1 .tab-content {
+  color : white;
+  background-color: #428bca;
+  padding : 5px 15px;
+}
+
+#exTab2 h3 {
+  color : white;
+  background-color: #428bca;
+  padding : 5px 15px;
+}
+
+/* remove border radius for the tab */
+
+#exTab1 .nav-pills > li > a {
+  border-radius: 0;
+}
+
+/* change border radius for the tab , apply corners on top*/
+
+#exTab3 .nav-pills > li > a {
+  border-radius: 4px 4px 0 0 ;
+}
+
+#exTab3 .tab-content {
+  color : white;
+  background-color: #428bca;
+  padding : 5px 15px;
 }
