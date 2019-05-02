@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/index.css">
     <script src="js/index.js"></script>
-    <?php include "mysqlDB.php"; ?>
+    <!--<?php //include "mysqlDB.php"; ?>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -37,18 +37,43 @@
    <div id="divButton">
 
    <div class="formLogin">
+     <form action="">
    <center> <span class="username">Username:</span> <input type="text" class="username" value=""></center>
-    <center><span class="pass">Password:</span><input type="password" class="pass" value=""></center>
+    <center><span class="pass">Password:</span><input type="password" class="pass" value=""></center></form>
 </div>  
-
+        <button action="login()"  >TEST</button>
       <a href="admin.php" class="btn btn-primary btn-lg" id="loginAdmin" role="button">Login Admin</a>
       <a href="kasir.php" class="btn btn-primary btn-lg" id="loginKasir" role="button">Login Kasir</a>
     </div> 
    
   </div>
 
-  <?php
-$this->db->executeSelectQuery("SELECT nama,password FROM pengguna ");
+<?php
+$conn = mysqli_connect('localhost','admin','','pizza');
+
+$result = mysqli_query($conn,"SELECT * FROM pengguna");
+while($row = mysqli_fetch_array($result)){
+  echo "".$row["nama"]." ".$row["password"]."<br>";
+}
+
+
+$usernameField = $html->find('div[class="username"]');
+$passwordField = $html->find('div[class="pass"]');
+
+function login(){
+
+  if($row["nama"]==$usernameField && $row["password"]==$passwordField){
+    if($row["role"]==1){
+      echo "admin.php";
+    }
+    else if ($row["role"]==0){
+      echo "kasir.php";
+    }
+  }
+
+}
+
+
 
 ?>
  
