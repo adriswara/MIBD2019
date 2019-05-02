@@ -76,8 +76,13 @@ $passwordField = $_POST["password"];
 $result = mysqli_query($conn,"SELECT * FROM pengguna WHERE username='".$usernameField."' AND password='".$passwordField."'");
 $rowcount=mysqli_num_rows($result);
 if($rowcount == 1){
-  echo "SUCCESS";
-  
+  while($row = $result->fetch_assoc()) {
+    if($row["role"]=="1"){
+      header('Location: ./admin.php');
+    }else{
+      header('Location: ./kasir.php');
+    }
+  }
 }else{
   echo "USERNAME AND PASSWORD NOT MATCH!";
   header('Location: ');
