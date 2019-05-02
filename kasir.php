@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="index.css">
-    <script src="index.js"></script>
+    <!-- <script src="index.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -33,7 +33,7 @@
             <h3 class="judulAwal">Menu Pesanan Topping</h3>
         </center>
 
-        
+
 
         <div class="container">
             <div class="row">
@@ -54,5 +54,18 @@
     <?php
 ?>
 </body>
+
+
+<script>
+
+$(document).ready(function(e){
+    $(".img-check").click(function(){
+        $(this).toggleClass("check");
+    });
+});
+
+</script>
+
+
 
 </html>
