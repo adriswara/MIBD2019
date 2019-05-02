@@ -19,7 +19,7 @@
 <body>
     <nav class="navbar navbar-light" style="background-color: #c59579;">
         <a class="navbar-brand" href="index.php">
-            <img class="pizzaImage" src="pizzaretro.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            <img class="pizzaImage" src="asset/pizzaretro.png" width="30" height="30" class="d-inline-block align-top" alt="">
             Pizzay</a>
     </nav>
 
@@ -88,21 +88,28 @@
 </div>
 
         <div class="container">
-            <div class="row">
-                <form method="get">
-                 <div class="form-group">	
-                     <div class="col-md-5"><label class="btn btn-primary"><img src="http://placehold.it/700x350&text=1" alt="..." class="img-thumbnail img-check img-responsive"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
-                 </div>
-                
-                
-                </form>
-            </div>	
+            <div class="scrollmenu">
+                <div class="row" style="height: 23vh;"> 
+                    <form method="get" style="height:19vh;margin: 40px;">
+                        <div class="form-group">	
+                            <div class="imageContent"><label class="btn btn-primary"><img class="toppingImage" src="http://placehold.it/700x350&text=1" alt="..." class="img-check img-responsive"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
+                            <div class="imageContent"><label class="btn btn-primary"><img class="toppingImage" src="http://placehold.it/700x350&text=1" alt="..." class=" img-check img-responsive"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
+                            <div class="imageContent"><label class="btn btn-primary"><img class="toppingImage" src="http://placehold.it/700x350&text=1" alt="..." class=" img-check img-responsive"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
+                            <div class="imageContent"><label class="btn btn-primary"><img class="toppingImage" src="http://placehold.it/700x350&text=1" alt="..." class=" img-check img-responsive"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
+                            <div class="imageContent"><label class="btn btn-primary"><img class="toppingImage" src="http://placehold.it/700x350&text=1" alt="..." class=" img-check img-responsive"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
+                            <div class="imageContent"><label class="btn btn-primary"><img class="toppingImage" src="http://placehold.it/700x350&text=1" alt="..." class=" img-check img-responsive"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
+                            <div class="imageContent"><label class="btn btn-primary"><img class="toppingImage" src="http://placehold.it/700x350&text=1" alt="..." class=" img-check img-responsive"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
+                        </div>
+                    </form>
+                </div>	
+            </div>
         </div>
+</div>
 
 
 
 
-    </div>
+
     
     <?php
     ?>

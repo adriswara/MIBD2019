@@ -67,6 +67,34 @@ margin-bottom: 5%;
   margin-top: -15%;
   margin-bottom: 7%;
 }
+
+/* Scroll */
+
+div.scrollmenu {
+  background-color: #333;
+  overflow: auto;
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+div.scrollmenu a:hover {
+  background-color: #777;
+}
+
+.imgContent{
+  float: left;
+  max-width: 50%;
+}
+
 /* kasir only */
 .btn-product{
   width: 100%;
@@ -103,4 +131,15 @@ margin-bottom: 5%;
 
 #img-upload{
   width: 100%;
+}
+
+/*Page Kasir Pertama*/
+
+.toppingImage{
+  width:262px;
+}
+
+.imageContent{
+  display: inline-block;
+  margin-right: 20px;
 }
