@@ -125,6 +125,9 @@ $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
                             <td>
                                 <?= $toppings['hargaTopping'] ?>
                             </td>
+                            <td>
+                                
+                            </td>
                         </tr>
                     <?php endwhile; ?> 
                 </table>
