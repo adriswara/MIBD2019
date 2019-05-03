@@ -65,7 +65,7 @@ $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
                             <?= $toppings['hargaTopping'] ?>
                         </td>
                         <td>
-                            <button name="pilih" method>
+                            <button name="pilih" method="post">
                                 Pilih Topping
                             </button>
                         </td>
