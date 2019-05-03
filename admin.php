@@ -54,12 +54,12 @@ $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
         <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
           <div class="tab-pane fade show active" id="toppingUID" role="tabpanel" aria-labelledby="nav-home-tab">
             <h5 class="py-3">Edit Data Topping</h5>
-            <input type="submit" value="Tambah Topping" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">
+            <input type="submit" value="Tambah Topping" class="btn btn-secondary" data-toggle="modal" data-target="#myModal1">
             <input type="submit" value="Hapus Topping" class="btn btn-danger">       
 
 
             <!-- The Modal -->
-            <div class="modal" id="myModal">
+            <div class="modal" id="myModal1">
                 <div class="modal-dialog">
                     <div class="modal-content">
 
@@ -73,27 +73,6 @@ $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
                         <!-- Modal body -->
                         <div class="modal-body">
                             <span>nama topping</span> <input type="text">
-
-                            <!-- Upload Photo -->
-
-                            <div class="container">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Silahkan Unggah Foto</label>
-                                        <div class="input-group">
-                                            <span class="input-group-btn">
-                                                <span class="btn btn-primary btn-file">
-                                                    Browse… <input type="file" id="imgInp">
-                                                </span>
-                                            </span>
-                                            <input type="text" class="form-control" readonly>
-
-                                        </div>
-                                        <img id='img-upload'/>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- -->
 
                         </div>
 
@@ -151,17 +130,17 @@ $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
     </div>
     <div class="tab-pane fade" id="adminUID" role="tabpanel" aria-labelledby="nav-profile-tab">
         <h5 class="py-3">Edit Data Admin</h5>
-        <input type="submit" value="Tambah Admin" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">
+        <input type="submit" value="Tambah Admin" class="btn btn-secondary" data-toggle="modal" data-target="#myModal2">
         <input type="submit" value="Hapus Admin" class="btn btn-danger">       
         
         
         <!-- The Modal -->
-        <div class="modal" id="myModal">
+        <div class="modal" id="myModal2">
             <div class="modal-dialog">
                 <div class="modal-content">
 
                     <!-- Modal Header -->
-                    <div class="modal-header">
+                    <div class="modal-header2">
                         <h4 class="modal-title">Silahkan Input Admin</h4>
 
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -170,28 +149,6 @@ $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
                     <!-- Modal body -->
                     <div class="modal-body">
                         <span>nama admin</span> <input type="text">
-
-                        <!-- Upload Photo -->
-
-                        <div class="container">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Silahkan Unggah Foto</label>
-                                    <div class="input-group">
-                                        <span class="input-group-btn">
-                                            <span class="btn btn-primary btn-file">
-                                                Browse… <input type="file" id="imgInp">
-                                            </span>
-                                        </span>
-                                        <input type="text" class="form-control" readonly>
-
-                                    </div>
-                                    <img id='img-upload'/>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- -->
-
                     </div>
 
                     <!-- Modal footer -->
@@ -204,8 +161,33 @@ $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
             </div>
         </div>
 
+
         <div class="container px-0 py-2">
-            <div class="scrollmenu">
+                <table border="2">
+                    <tr>
+                        <th>
+                            Nama Topping
+                        </th>
+                        <th>
+                            Harga
+                        </th>
+                    </tr>
+                    <?php while($toppings = mysqli_fetch_array($topping)): ?>
+                        <tr>
+                            <td>
+                                <?= $toppings['namaTopping'] ?>
+                            </td>
+                            <td>
+                                <?= $toppings['hargaTopping'] ?>
+                            </td>
+                            <td>
+                                
+                            </td>
+                        </tr>
+                    <?php endwhile; ?> 
+                </table>
+
+            <!-- <div class="scrollmenu">
                 <div class="row" style="height: 210px;"> 
                     <form method="get" style="height:19vh;margin: 40px;">
                         <div class="form-group">	
@@ -219,18 +201,18 @@ $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
                         </div>
                     </form>
                 </div>	
-            </div>
+            </div> -->
         </div>
         
     </div>
     <div class="tab-pane fade" id="kasirUID" role="tabpanel" aria-labelledby="nav-contact-tab">
         <h5 class="py-3">Edit Data Kasir</h5>
-        <input type="submit" value="Tambah Kasir" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">
+        <input type="submit" value="Tambah Kasir" class="btn btn-secondary" data-toggle="modal" data-target="#myModal3">
         <input type="submit" value="Hapus Kasir" class="btn btn-danger">       
         
         
         <!-- The Modal -->
-        <div class="modal" id="myModal">
+        <div class="modal" id="myModal3">
             <div class="modal-dialog">
                 <div class="modal-content">
 
@@ -245,27 +227,6 @@ $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
                     <div class="modal-body">
                         <span>nama Kasir</span> <input type="text">
 
-                        <!-- Upload Photo -->
-
-                        <div class="container">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Silahkan Unggah Foto</label>
-                                    <div class="input-group">
-                                        <span class="input-group-btn">
-                                            <span class="btn btn-primary btn-file">
-                                                Browse… <input type="file" id="imgInp">
-                                            </span>
-                                        </span>
-                                        <input type="text" class="form-control" readonly>
-
-                                    </div>
-                                    <img id='img-upload'/>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- -->
-
                     </div>
 
                     <!-- Modal footer -->
@@ -278,7 +239,33 @@ $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
             </div>
         </div>
 
+
         <div class="container px-0 py-2">
+                <table border="2">
+                    <tr>
+                        <th>
+                            Nama Topping
+                        </th>
+                        <th>
+                            Harga
+                        </th>
+                    </tr>
+                    <?php while($toppings = mysqli_fetch_array($topping)): ?>
+                        <tr>
+                            <td>
+                                <?= $toppings['namaTopping'] ?>
+                            </td>
+                            <td>
+                                <?= $toppings['hargaTopping'] ?>
+                            </td>
+                            <td>
+                                
+                            </td>
+                        </tr>
+                    <?php endwhile; ?> 
+                </table>
+<!-- 
+
             <div class="scrollmenu">
                 <div class="row" style="height: 210px;"> 
                     <form method="get" style="height:19vh;margin: 40px;">
@@ -293,7 +280,7 @@ $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
                         </div>
                     </form>
                 </div>	
-            </div>
+            </div> -->
         </div>
         
     </div>
