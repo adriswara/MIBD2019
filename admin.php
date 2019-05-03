@@ -5,7 +5,6 @@ $con = mysqli_connect('localhost','root','','pizza');
 if($_POST["inputTop"]){
     $inputTopping = $_POST["inputTop"];
     $inputHarga = $_POST["inputHarga"];
-    //$result = mysqli_query($conn,"SELECT * FROM pengguna WHERE username='".$usernameField."' AND password='".$passwordField."'");
     $result = mysqli_query($con,"INSERT INTO topping(namaTopping,hargaTopping) VALUES ('".$inputTopping."',$inputHarga) ");
     
 }
