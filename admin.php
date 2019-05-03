@@ -1,18 +1,35 @@
 <?php
 $con = mysqli_connect('localhost','root','','pizza');
 
-// if buat method input toping
-if($_POST["inputTop"]){
+
+if(isset($_POST["inputTop"]) && $_POST["inputTop"] !=NULL){
     $inputTopping = $_POST["inputTop"];
     $inputHarga = $_POST["inputHarga"];
     $result = mysqli_query($con,"INSERT INTO topping(namaTopping,hargaTopping) VALUES ('".$inputTopping."',$inputHarga) ");
     
 }
 //
+
+// if buat method input kasir
+if(isset($_POST["inputNamaK"]) && $_POST["inputNamaK"] ){
+$inputNamaK = $_POST["inputNamaK"];
+$inputUserK = $_POST["inputUsernK"];
+$inputPassK = $_POST["inputPassK"];
+$result = mysqli_query($con,"INSERT INTO pengguna(nama,password,role,username) VALUES ('".$inputNamaK."','".$inputPassK."',2,'".$inputUserK."') ");
+}
+//
+
+
 //load topping
 $sqltopping = ('select * from topping');
-$topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
+$topping = mysqli_query($con, $sqltopping) or die(mysqli_error($con));
 //
+
+//load kasir
+$sqlkasir = ('select * from pengguna where role=2');
+$kasir =\mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
+//
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,8 +102,8 @@ $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
                         <!-- Modal body -->
                         <form action="admin.php" method="post">
                         <div class="modal-body">
-                            <span>nama topping</span> <input type="text" id="inputTop" name="inputTop">
-                            <span>harga topping</span> <input type="text" id="inputHarga" name="inputHarga">
+                            <span>Nama Topping</span> <input type="text" id="inputTop" name="inputTop">
+                            <span>Harga Topping</span> <input type="text" id="inputHarga" name="inputHarga">
                             </div>
                          
 
@@ -240,16 +257,20 @@ $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
                     </div>
 
                     <!-- Modal body -->
+                    <form action="admin.php" method="post">
                     <div class="modal-body">
-                        <span>nama Kasir</span> <input type="text">
-
-                    </div>
+                        <span>Nama Kasir</span> <input type="text" id="inputNamaK" name="inputNamaK">
+                        <span>Username</span> <input type="text" id="inputUsernK" name="inputUsernK">
+                        <span>Password</span> <input type="text" id="inputPassK" name="inputPassK">
+                        </div>
 
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Submit</button>
+                        <button type="submit" class="btn btn-danger" >Submit</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
                     </div>
+
+                    </form>
 
                 </div>
             </div>
@@ -266,13 +287,13 @@ $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
                             Nama
                         </th>
                     </tr>
-                    <?php while($toppings = mysqli_fetch_array($topping)): ?>
+                    <?php while($kasirs = mysqli_fetch_array($kasir)): ?>
                         <tr>
                             <td>
-                                <?= $toppings['namaTopping'] ?>
+                                <?= $kasirs['idUser'] ?>
                             </td>
                             <td>
-                                <?= $toppings['hargaTopping'] ?>
+                                <?= $kasirs['nama'] ?>
                             </td>
                             <td>
                                 
