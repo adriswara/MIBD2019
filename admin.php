@@ -42,7 +42,7 @@ $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
                 <a class="nav-link nav-item active" role="tab" aria-controls="toppingUID" data-toggle="tab" href="#toppingUID">Topping</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link"  role="tab" aria-controls="adminUID" data-toggle="tab" href="#adminUID">Admin</a>
+                <a class="nav-link"  role="tab" aria-controls="adminUID" data-toggle="tab" href="#adminUID">Laporan</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link"  role="tab" aria-controls="kasirUID" data-toggle="tab" href="#kasirUID">Kasir</a>
@@ -206,7 +206,7 @@ $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
         
     </div>
     <div class="tab-pane fade" id="kasirUID" role="tabpanel" aria-labelledby="nav-contact-tab">
-        <h5 class="py-3">Edit Data Kasir</h5>
+        <h5 class="py-3">Data Laporan</h5>
         <input type="submit" value="Tambah Kasir" class="btn btn-secondary" data-toggle="modal" data-target="#myModal3">
         <input type="submit" value="Hapus Kasir" class="btn btn-danger">       
         
@@ -244,10 +244,10 @@ $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
                 <table border="2">
                     <tr>
                         <th>
-                            Nama Topping
+                            ID
                         </th>
                         <th>
-                            Harga
+                            Nama
                         </th>
                     </tr>
                     <?php while($toppings = mysqli_fetch_array($topping)): ?>
@@ -286,14 +286,6 @@ $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
     </div>
 
 </div>
-
-
-
-
-
-
-
-
 
 
 

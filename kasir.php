@@ -1,3 +1,9 @@
+<?php
+$con = mysqli_connect('localhost','root','','pizza');
+$sqltopping = ('select * from topping');
+$topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,15 +42,29 @@
 
 
         <div class="container">
-            <div class="row">
-                <form method="get">
-                 <div class="form-group">	
-                     <div class="col-md-5"><label class="btn btn-primary"><img src="http://placehold.it/700x350&text=1" alt="..." class="img-thumbnail img-check img-responsive"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
-                 </div>
-                 <input type="submit" value="Checkout" class="btn btn-primary">
-                
-                </form>
-            </div>	
+        <table border="2">
+                    <tr>
+                        <th>
+                            Nama Topping
+                        </th>
+                        <th>
+                            Harga
+                        </th>
+                    </tr>
+                    <?php while($toppings = mysqli_fetch_array($topping)): ?>
+                        <tr>
+                            <td>
+                                <?= $toppings['namaTopping'] ?>
+                            </td>
+                            <td>
+                                <?= $toppings['hargaTopping'] ?>
+                            </td>
+                            <td>
+                                
+                            </td>
+                        </tr>
+                    <?php endwhile; ?> 
+                </table>
         </div>
 
 
