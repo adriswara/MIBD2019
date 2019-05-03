@@ -12,7 +12,12 @@ if(isset($_POST["inputTop"]) && $_POST["inputTop"] !=NULL){
 if(isset($_POST["editTop"]) && $_POST["editTop"] !=NULL){
     $editTopping = $_POST["editTop"];
     $editHarga = $_POST["editHarga"];
-    $result = mysqli_query($con,"UPDATE topping(namaTopping,hargaTopping) SET ('".$editTopping."',$editHarga) ");
+    $result = mysqli_query($con,"UPDATE edittopping(namaTopping,hargaTopping) SET ('".$editTopping."', $editHarga) ");
+    
+}
+if(isset($_POST["hapusTop"]) !=NULL){
+    $hapusTopping = $_POST["hapusTop"];
+    $result = mysqli_query($con,"DELETE FROM topping WHERE namaTopping = '".$hapusTopping."'");
     
 }
 //
@@ -91,7 +96,9 @@ $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
           <div class="tab-pane fade show active" id="toppingUID" role="tabpanel" aria-labelledby="nav-home-tab">
             <h5 class="py-3">Edit Data Topping</h5>
             <input type="submit" value="Tambah Topping" class="btn btn-secondary" data-toggle="modal" data-target="#myModal1">
-            <input type="submit" value="Edit Topping" class="btn btn-danger" data-toggle="modal" data-target="#myModal12">       
+            <input type="submit" value="Edit Topping" class="btn btn-danger" data-toggle="modal" data-target="#myModal12">            
+            <input type="submit" value="Hapus Topping" class="btn btn-danger" data-toggle="modal" data-target="#myModal13">
+
 
 
             <!-- The Modal -->
@@ -126,7 +133,7 @@ $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
                     </div>
                 </div>
             </div>
-
+            <!--modal edit topping -->
             <div class="modal" id="myModal12">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -151,6 +158,36 @@ $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
 
                                 <span>Nama Topping</span> <input type="text" id="editTop" name="editTop">
                                 <span>Harga Topping</span> <input type="text" id="editHarga" name="editHarga">
+                            </div>
+
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-danger">Submit</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Modal hapus topping -->
+            <div class="modal" id="myModal13">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+
+                        <div class="modal-header">
+                            <h4 class="modal-title">Silahkan Pilih Topping yang akan Dihapus</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <form action="admin.php" method="post">
+                            <div class="modal-body">
+                                <span>Nama Topping</span> <input type="text" id="hapusTop" name="hapusTop">
                             </div>
 
 
