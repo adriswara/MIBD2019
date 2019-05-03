@@ -3,7 +3,6 @@ $con = mysqli_connect('localhost','root','','pizza');
 $sqltopping = ('select * from topping');
 $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,11 +22,11 @@ $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
 </head>
 
 <body>
-    
+
     <nav class="navbar navbar-light" style="background-color: #c59579;">
         <a class="navbar-brand" href="index.php">
             <img class="pizzaImage" src="asset/pizzaretro.png" width="30" height="30" class="d-inline-block align-top" alt="">
-            Pizzay</a>
+        Pizzay</a>
     </nav>
 
     <div class="container" id="selectContainer">
@@ -41,48 +40,67 @@ $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
 
 
 
-        <div class="container">
-        <table border="2">
+        <div class="container px-0 py-2">
+            <table border="2">
+                <tr>
+                    <th>
+                        Nama Topping
+                    </th>
+                    <th>
+                        Harga
+                    </th>
+                    <th>
+                        
+                    </th>
+                    <th>
+                        Jumlah 
+                    </th>
+                </tr>
+                <?php while($toppings = mysqli_fetch_array($topping)): ?>
                     <tr>
-                        <th>
-                            Nama Topping
-                        </th>
-                        <th>
-                            Harga
-                        </th>
+                        <td>
+                            <?= $toppings['namaTopping'] ?>
+                        </td>
+                        <td>
+                            <?= $toppings['hargaTopping'] ?>
+                        </td>
+                        <td>
+                            <button name="pilih" method>
+                                Pilih Topping
+                            </button>
+                        </td>
+                        <td>
+                            <select>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                            </select>
+                        </td>
                     </tr>
-                    <?php while($toppings = mysqli_fetch_array($topping)): ?>
-                        <tr>
-                            <td>
-                                <?= $toppings['namaTopping'] ?>
-                            </td>
-                            <td>
-                                <?= $toppings['hargaTopping'] ?>
-                            </td>
-                            <td>
-                                
-                            </td>
-                        </tr>
-                    <?php endwhile; ?> 
-                </table>
+                <?php endwhile; ?> 
+            </table>
         </div>
 
-
-
-
+        <p>
+            Total Harga : 
+        </p>
     </div>
-    <?php
-?>
+
+
+
+
+
+    
 </body>
 
 
 <script>
 
-$(document).ready(function(e){
-    $(".img-check").click(function(){
-        $(this).toggleClass("check");
+    $(document).ready(function(e){
+        $(".img-check").click(function(){
+            $(this).toggleClass("check");
+        });
     });
-});
 
 </script>
 
