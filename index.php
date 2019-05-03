@@ -1,4 +1,8 @@
 
+<?php
+$conn = mysqli_connect('localhost','root','','pizza');
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,11 +73,9 @@
 </div>
 
 <?php
-$conn = mysqli_connect('localhost','root','','pizza');
 
-  $usernameField = $_POST["username"];   
-  $passwordField = $_POST["password"];
-
+$usernameField = $_POST["username"];   
+$passwordField = $_POST["password"];
 
 $result = mysqli_query($conn,"SELECT * FROM pengguna WHERE username='".$usernameField."' AND password='".$passwordField."'");
 $rowcount=mysqli_num_rows($result);

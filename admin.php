@@ -1,7 +1,19 @@
 <?php
 $con = mysqli_connect('localhost','root','','pizza');
+
+// if buat method input toping
+if($_POST["inputTop"]){
+    $inputTopping = $_POST["inputTop"];
+    $inputHarga = $_POST["inputHarga"];
+    //$result = mysqli_query($conn,"SELECT * FROM pengguna WHERE username='".$usernameField."' AND password='".$passwordField."'");
+    $result = mysqli_query($con,"INSERT INTO topping(namaTopping,hargaTopping) VALUES ('".$inputTopping."',$inputHarga) ");
+    
+}
+//
+//load topping
 $sqltopping = ('select * from topping');
 $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
+//
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,6 +76,7 @@ $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
                     <div class="modal-content">
 
                         <!-- Modal Header -->
+
                         <div class="modal-header">
                             <h4 class="modal-title">Silahkan Input topping</h4>
 
@@ -71,16 +84,20 @@ $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
                         </div>
 
                         <!-- Modal body -->
+                        <form action="admin.php" method="post">
                         <div class="modal-body">
-                            <span>nama topping</span> <input type="text">
-
-                        </div>
+                            <span>nama topping</span> <input type="text" id="inputTop" name="inputTop">
+                            <span>harga topping</span> <input type="text" id="inputHarga" name="inputHarga">
+                            </div>
+                         
 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Submit</button>
+                            <button type="submit" class="btn btn-danger">Submit</button>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
                         </div>
+
+                        </form>
 
                     </div>
                 </div>
@@ -290,6 +307,8 @@ $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
 
 
 <?php
+
+
 ?>
 
 </body>
