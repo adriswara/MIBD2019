@@ -59,4 +59,5 @@ class MySQLDB{
 }
 
 $db = new MySQLDB("localhost","root","","pizza");
+
 ?>
