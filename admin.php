@@ -20,6 +20,12 @@ if(isset($_POST["hapusTop"]) !=NULL){
     $result = mysqli_query($con,"DELETE FROM topping WHERE namaTopping = '".$hapusTopping."'");
     
 }
+
+if(isset($_POST["hapusKasir"]) !=NULL){
+    $hapusKasir = $_POST["hapusKasir"];
+    $result = mysqli_query($con,"DELETE FROM pengguna WHERE role = 2 AND nama='".$hapusKasir."'");
+    
+}
 //
 
 // if buat method input kasir
@@ -247,12 +253,12 @@ $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
     </div>
     <div class="tab-pane fade" id="adminUID" role="tabpanel" aria-labelledby="nav-profile-tab">
         <h5 class="py-3">Edit Data Admin</h5>
-        <input type="submit" value="Tambah Admin" class="btn btn-secondary" data-toggle="modal" data-target="#myModal2">
-        <input type="submit" value="Hapus Admin" class="btn btn-danger">       
+        <input type="submit" value="Tambah Admin" class="btn btn-secondary" data-toggle="modal" data-target="#myModal3">
+        <input type="submit" value="Hapus Admin" class="btn btn-danger" data-toggle="modal" data-target="#myModal14">       
         
         
         <!-- The Modal -->
-        <div class="modal" id="myModal2">
+        <div class="modal" id="myModal3">
             <div class="modal-dialog">
                 <div class="modal-content">
 
@@ -277,7 +283,7 @@ $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
                 </div>
             </div>
         </div>
-
+       
 
         <div class="container px-0 py-2">
             <table border="2">
@@ -307,12 +313,12 @@ $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
     </div>
     <div class="tab-pane fade" id="kasirUID" role="tabpanel" aria-labelledby="nav-contact-tab">
         <h5 class="py-3">Data Laporan</h5>
-        <input type="submit" value="Tambah Kasir" class="btn btn-secondary" data-toggle="modal" data-target="#myModal3">
-        <input type="submit" value="Hapus Kasir" class="btn btn-danger">       
+        <input type="submit" value="Tambah Kasir" class="btn btn-secondary" data-toggle="modal" data-target="#myModal15">
+        <input type="submit" value="Hapus Kasir" class="btn btn-danger"  data-toggle="modal" data-target="#myModal16">       
         
         
         <!-- The Modal -->
-        <div class="modal" id="myModal3">
+        <div class="modal" id="myModal5">
             <div class="modal-dialog">
                 <div class="modal-content">
 
@@ -343,6 +349,36 @@ $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
             </div>
         </div>
 
+         <!-- Modal hapus kasir -->
+         <div class="modal" id="myModal16">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+
+                        <div class="modal-header">
+                            <h4 class="modal-title">Silahkan input nama kasir yang akan dihapus</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <form action="admin.php" method="post">
+                            <div class="modal-body">
+                                <span>Nama Kasir</span> <input type="text" id="hapusKasir" name="hapusKasir">
+                            </div>
+
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-danger">Submit</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
 
         <div class="container px-0 py-2">
             <table border="2">
