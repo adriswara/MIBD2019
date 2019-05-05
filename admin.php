@@ -35,7 +35,10 @@ $edittopping = mysqli_query($con, $sqltopping) or die(mysqli_error($con));
 $sqlkasir = ('select * from pengguna where role="2"');
 $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
 //
+
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -151,9 +154,9 @@ $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
                                     ?>
                                 </td>
                                 <td class="text-center">
-                                    <button onclick="edit_pengguna(<?= $kasirs['idUser'] ?>, '<?= $kasirs['nama'] ?>', <?= $kasirs['role'] ?>)" class="btn btn-warning">UBAH</button>
+                                    <button onclick="edit_pengguna(<?= $kasirs['idUser'] ?>, '<?= $kasirs['nama'] ?>','<?= $kasirs['password'] ?>','<?= $kasirs['password'] ?>', <?= $kasirs['role'] ?>)" class="btn btn-warning">UBAH</button>
                                     <button onclick="delete_pengguna(<?= $kasirs['idUser'] ?>, '<?= $kasirs['nama'] ?>', <?= $kasirs['role'] ?>)" class="btn btn-danger">HAPUS</button>
-                                  
+
                                 </td>
                             </tr>
                         <?php endwhile; ?>
@@ -226,7 +229,9 @@ $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
                             <div class="modal-body">
                                 <span style="display: none;">ID </span> <input type="number" id="user_id" name="id" style="display: none;">
                                 <span>Nama Pengguna</span> <input type="text" id="user_name" name="name"><br>
-                                <span>Jabatan</span> <input type="number" id="user_role" name="role">
+                                <span>Username</span> <input type="text" id="user_username" name="username"><br>
+                                <span>Password</span> <input type="text" id="user_password" name="password">
+                                <span style="display: none">Jabatan</span> <input type="number" id="user_role" name="role" style="display:none">
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-danger">Submit</button>
@@ -236,7 +241,7 @@ $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
                     </div>
                 </div>
             </div>
-
+<!--  -->
             <div class="modal" id="myModal5">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -247,12 +252,12 @@ $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
                         <form action="./kasir/add_kasir.php" method="post">
                             <div class="modal-body">
                                 <span style="display: none;">ID </span> <input type="number" id="user_id" name="id" style="display: none;">
-                                <span>Nama Pengguna</span> <input type="text" id="user_name" name="name"><br>
-                                <span>Username</span> <input type="text" id="user_username" name="username"><br>
-                                <span>Password</span> <input type="text" id="user_password" name="password"><br>
+                                <span>Nama Pengguna</span> <input type="text" id="name" name="name"><br>
+                                <span>Username</span> <input type="text" id="username" name="username"><br>
+                                <span>Password</span> <input type="text" id="password" name="password"><br>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-danger">Submit</button>
+                                <button type="submit" class="btn btn-danger" name="reg">Submit</button>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
                             </div>
                         </form>
@@ -325,9 +330,11 @@ $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
                     });
                 }
             }
-            function edit_pengguna(user_id, user_name, user_role){
+            function edit_pengguna(user_id, user_name, user_username, user_password, user_role){
                 $('#user_id').val(user_id);
                 $('#user_name').val(user_name);
+                $('#user_username').val(user_username);
+                $('#user_password').val(user_password);
                 $('#user_role').val(user_role);
                 $('#edit_pengguna').click();    
 
