@@ -32,7 +32,7 @@ $topping = mysqli_query($con, $sqltopping) or die(mysqli_error($con));
 $edittopping = mysqli_query($con, $sqltopping) or die(mysqli_error($con));
 //
 //load kasir
-$sqlkasir = ('select * from pengguna');
+$sqlkasir = ('select * from pengguna where role="2"');
 $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
 //
 ?>
@@ -119,7 +119,7 @@ $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
                         <h5 class="py-3">Pengguna</h5>
                     </div>
                     <div class="col-md text-right">
-                        <input type="submit" value="Hapus Pengguna" class="btn btn-primary" data-toggle="modal" data-target="#myModal5">
+                        <input type="submit" value="Tambah Kasir" class="btn btn-primary" data-toggle="modal" data-target="#myModal5">
                         <input type="submit" value="" class="btn btn-primary" data-toggle="modal" data-target="#myModal2" id="edit_pengguna" style="display: none">
                     </div>
                 </div>
@@ -152,11 +152,8 @@ $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
                                 </td>
                                 <td class="text-center">
                                     <button onclick="edit_pengguna(<?= $kasirs['idUser'] ?>, '<?= $kasirs['nama'] ?>', <?= $kasirs['role'] ?>)" class="btn btn-warning">UBAH</button>
-                                    <?php 
-                                    if($kasirs['role']==2){
-                                        echo '<button onclick="delete_pengguna(<?= $kasirs['idUser'] ?>, '<?= $kasirs['nama'] , <?= $kasirs['role'] ?>)" class="btn btn-danger">HAPUS</button>';
-                                    }                                    
-                                    ?>
+                                    <button onclick="delete_pengguna(<?= $kasirs['idUser'] ?>, '<?= $kasirs['nama'] ?>', <?= $kasirs['role'] ?>)" class="btn btn-danger">HAPUS</button>
+                                  
                                 </td>
                             </tr>
                         <?php endwhile; ?>
@@ -239,18 +236,20 @@ $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
                     </div>
                 </div>
             </div>
+
             <div class="modal" id="myModal5">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title">Hapus Pengguna</h4><br>
+                            <h4 class="modal-title">Tambah Kasir</h4><br>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
-                        <form action="./kasir/edit_pengguna.php" method="post">
+                        <form action="./kasir/add_kasir.php" method="post">
                             <div class="modal-body">
                                 <span style="display: none;">ID </span> <input type="number" id="user_id" name="id" style="display: none;">
                                 <span>Nama Pengguna</span> <input type="text" id="user_name" name="name"><br>
-                                <span>Jabatan</span> <input type="number" id="user_role" name="role">
+                                <span>Username</span> <input type="text" id="user_username" name="username"><br>
+                                <span>Password</span> <input type="text" id="user_password" name="password"><br>
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-danger">Submit</button>
@@ -332,6 +331,19 @@ $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
                 $('#user_role').val(user_role);
                 $('#edit_pengguna').click();    
 
+            }
+            function delete_pengguna(user_id, user_name) {
+                conf = confirm("Apakah Anda akan menghapus user "+user_name+" ?");
+                if(conf==true){
+                    $.post("./kasir/delete_pengguna.php",
+                    {
+                        idUser: user_id
+                    },                       
+                    function(data, status){
+                        alert("User "+user_name+" telah berhasil dihapus."); 
+                        location.reload(true);
+                    });
+                }
             }
         </script>
     </body>
