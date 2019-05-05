@@ -119,7 +119,8 @@ $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
                         <h5 class="py-3">Pengguna</h5>
                     </div>
                     <div class="col-md text-right">
-                        <input type="submit" value="Tambah Pengguna" class="btn btn-primary" data-toggle="modal" data-target="#myModal4">
+                        <input type="submit" value="Tambah Pengguna" class="btn btn-primary" data-toggle="modal" data-target="#myModal5">
+                        <input type="submit" value="" class="btn btn-primary" data-toggle="modal" data-target="#myModal2" id="edit_pengguna" style="display: none">
                     </div>
                 </div>
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
@@ -161,23 +162,7 @@ $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
                         <?php endwhile; ?>
                     </tbody>
                 </table>
-                <div class="modal" id="myModal2">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Silahkan Input Admin</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
-                            <div class="modal-body">
-                                <span>nama admin</span> <input type="text">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Submit</button>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
 
             <div class="tab-pane fade" id="kasirUID" role="tabpanel" aria-labelledby="nav-contact-tab">
@@ -232,6 +217,28 @@ $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
                 </div>
             </div>
 
+            <div class="modal" id="myModal2">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Ubah Pengguna</h4><br>
+                            <h4>1:Admin 2:Kasir</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <form action="./kasir/edit_pengguna.php" method="post">
+                            <div class="modal-body">
+                                <span style="display: none;">ID </span> <input type="number" id="user_id" name="id" style="display: none;">
+                                <span>Nama Pengguna</span> <input type="text" id="user_name" name="name"><br>
+                                <span>Jabatan</span> <input type="number" id="user_role" name="role">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-danger">Submit</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
             <div class="modal" id="myModal13">
                 <div class="modal-dialog">
@@ -301,7 +308,7 @@ $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
             function edit_pengguna(user_id, user_name, user_role){
                 $('#user_id').val(user_id);
                 $('#user_name').val(user_name);
-                $('#topping_price').val(user_price);
+                $('#user_role').val(user_role);
                 $('#edit_pengguna').click();    
 
             }
