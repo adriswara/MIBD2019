@@ -2,6 +2,9 @@
 $con = mysqli_connect('localhost','root','','pizza');
 $sqltopping = ('select * from topping');
 $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
+
+$hargapizza = ('select hargaPizza FROM pizza');
+$hargatopping = ('select namaTopping, SUM(hargatopping) from pizza_pesanan_topping join topping on pizza_pesanan_topping.idTopping = topping.idTopping group by namaTopping')
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,11 +64,39 @@ $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
                                 <?= $toppings['hargaTopping'] ?>
                             </td>
                             <td class="text-center">
-                                <button onclick="pilih_topping(<?= $toppings['idTopping'] ?>, '<?= $toppings['namaTopping'] ?>', <?= $toppings['hargaTopping'] ?>)" class="btn btn-warning">UBAH</button>
+                                <button onclick="pilih_topping(<?= $toppings['idTopping'] ?>, '<?= $toppings['namaTopping'] ?>', <?= $toppings['hargaTopping'] ?>)" class="btn btn-warning">PILIH</button>
                                 <button onclick="tidak_pilih_topping(<?= $toppings['idTopping'] ?>, '<?= $toppings['namaTopping'] ?>')" class="btn btn-danger">HAPUS</button>
                             </td>
                         </tr>
                     <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+            <table id="example" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr class="text-center">
+                        <th>Topping Terpilih</th>
+                        <th>Harga</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while($toppings = mysqli_fetch_array($topping)): ?>
+                        <tr>
+                            <td>
+                                <?= $toppings['namaTopping'] ?>
+                            </td>
+                            <td>
+                                <?= $toppings['hargaTopping'] ?>
+                            </td>
+                            <td class="text-center">
+                                <button onclick="pilih_topping(<?= $toppings['idTopping'] ?>, '<?= $toppings['namaTopping'] ?>', <?= $toppings['hargaTopping'] ?>)" class="btn btn-warning">PILIH</button>
+                                <button onclick="tidak_pilih_topping(<?= $toppings['idTopping'] ?>, '<?= $toppings['namaTopping'] ?>')" class="btn btn-danger">BATAL</button>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                    <th>hehe</th>
                 </tbody>
             </table>
         </div>
@@ -74,14 +105,13 @@ $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
     
 </body>
 
-
-<script>
-
-    $(document).ready(function(e){
-        $(".img-check").click(function(){
-            $(this).toggleClass("check");
-        });
-    });
+<script type="text/javascript">
+    function pilih_topping(topping_id, topping_name, topping_price) {
+        $('#topping_id').val(topping_id);
+        $('#topping_name').val(topping_name);
+        $('#topping_price').val(topping_price);
+        $('#edit_topping').click();
+    }
 
 </script>
 
