@@ -35,8 +35,47 @@ $edittopping = mysqli_query($con, $sqltopping) or die(mysqli_error($con));
 $sqlkasir = ('select * from pengguna where role="2"');
 $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
 //
+//load laporanPenjualan 7 hari
+$sqlLaporanA = ('SELECT hargaPesanan,hargaPesanan,idPesanan,idUser,tanggal from pesanan WHERE CURDATE() - tanggal <= "7"');
+$laporanAQ = mysqli_query($con, $sqlLaporanA) or die(mysqli_error($con));
+//
+
+//load penjualan
+$sqlLaporan = ('SELECT * from pesanan ');
+$laporanQ = mysqli_query($con, $sqlLaporan) or die(mysqli_error($con));
+//
 
 
+//load laporan rentang harga
+$sqlLaporanBQ = NULL;
+
+function laporanRentang(){
+echo var_dump("MASUK FUNC");
+
+$rentangAwal = $_POST["inputRentangAwal"];
+$rentangAkhir = $_POST["inputRentangAkhir"];
+$sqlLaporanB = ('SELECT hargaPesanan,hargaPesanan,idPesanan,idUser,tanggal from pesanan WHERE tanggal >= '.$rentangAwal." AND tanggal <= ".$rentangAkhir);
+$sqlLaporanBQ = mysqli_query($con, $sqlLaporanB) or die(mysqli_error($con));
+
+}
+//
+
+//
+if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
+    $dataAwal = $_POST["inputRentangAwal"];
+    $dateAkhir = $_POST["inputRentangAkhir"];
+    //
+    $rentangAwal = $_POST["inputRentangAwal"];
+    $rentangAkhir = $_POST["inputRentangAkhir"];
+   
+    
+    $sql= ('SELECT hargaPesanan,hargaPesanan,idPesanan,idUser,tanggal from pesanan WHERE tanggal >= "'.$rentangAwal.'"AND tanggal <= "'.$rentangAkhir.'"');
+
+    
+    $sqlLaporanB=mysqli_query($con, $sql); 
+
+}
+//
 ?>
 
 <!DOCTYPE html>
@@ -164,50 +203,43 @@ $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
                 </table>
 
             </div>
-
-            <div class="tab-pane fade" id="kasirUID" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <!-- laporanA -->
+            <div class="tab-pane fade active show" id="kasirUID" role="tabpanel" aria-labelledby="nav-contact-tab">
                 <h5 class="py-3">Data Laporan</h5>
-                <input type="submit" value="Tambah Kasir" class="btn btn-secondary" data-toggle="modal" data-target="#myModal3">
-                <input type="submit" value="Hapus Kasir" class="btn btn-danger">
+              <!--  <input type="submit" value="Tambah Kasir" class="btn btn-secondary" data-toggle="modal" data-target="#myModal3"> -->
+               <!-- <input type="submit" value="Transaksi Rentang 7 Hari" class="btn btn-danger"> -->
+               <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">Penjualan Rentang 7 Hari</button>
+                
 
-                <div class="modal" id="myModal3">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Silahkan Input Kasir</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
-                            <form action="admin.php" method="post">
-                                <div class="modal-body">
-                                    <span>Nama Kasir</span> <input type="text" id="inputNamaK" name="inputNamaK">
-                                    <span>Username</span> <input type="text" id="inputUsernK" name="inputUsernK">
-                                    <span>Password</span> <input type="text" id="inputPassK" name="inputPassK">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-danger">Submit</button>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="container px-0 py-2">
+                <div id="demo" class="collapse">
                     <table border="2">
                         <tr>
                             <th>
                                 ID
                             </th>
                             <th>
-                                Nama
+                                Harga Pesanan
+                            </th>
+                            <th>
+                                Tanggal
+                            </th>
+                            <th>
+                                ID Kasir
                             </th>
                         </tr>
-                        <?php while($kasirs = mysqli_fetch_array($kasir)): ?>
+                        <?php while($laporanA = mysqli_fetch_array($laporanAQ)): ?>
                             <tr>
                                 <td>
-                                    <?= $kasirs['idUser'] ?>
+                                    <?= $laporanA['idUser'] ?>
                                 </td>
                                 <td>
-                                    <?= $kasirs['nama'] ?>
+                                    <?= $laporanA['hargaPesanan'] ?>
+                                </td>
+                                <td>
+                                    <?= $laporanA['tanggal'] ?>
+                                </td>
+                                <td>
+                                    <?= $laporanA['idUser'] ?>
                                 </td>
                                 <td>
                                 </td>
@@ -215,7 +247,67 @@ $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
                         <?php endwhile; ?>
                     </table>
                 </div>
+         
+            <!---->
+
+            <!-- laporanB -->
+            <div class="tab-pane fade active show " id="kasirUID" role="tabpanel" aria-labelledby="nav-contact-tab">
+                <h5 class="py-3">Data Laporan</h5>
+              <!--  <input type="submit" value="Tambah Kasir" class="btn btn-secondary" data-toggle="modal" data-target="#myModal3"> -->
+               <!-- <input type="submit" value="Transaksi Rentang 7 Hari" class="btn btn-danger"> -->
+               <!-- <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">Penjualan Rentang Waktu</button> -->
+
+                <form action="admin.php" method="post" >
+                <input type="date" name="inputRentangAwal" data-date-format="YYYY MMMM DD">
+                <input type="date"name="inputRentangAkhir" data-date-format="YYYY MMMM DD">
+                <button type="submit">Submit</button>
+                </form>                
+
+                
+
+                <div id="" class="">
+                    <table border="2">
+                        <tr>
+                            <th>
+                                ID
+                            </th>
+                            <th>
+                                Harga Pesanan
+                            </th>
+                            <th>
+                                Tanggal
+                            </th>
+                            <th>
+                                ID Kasir
+                            </th>
+                        </tr>
+                       
+                        <?php
+                                
+                                 while($laporanB = mysqli_fetch_array($sqlLaporanB)): ?>
+                            <tr>
+                                <td>
+                                    <?= $laporanB['idPesanan'] ?>
+                                </td>
+                                <td>
+                                    <?= $laporanB['hargaPesanan'] ?>
+                                </td>
+                                <td>
+                                    <?= $laporanB['tanggal'] ?>
+                                </td>
+                                <td>
+                                    <?= $laporanB['idUser'] ?>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        <?php endwhile;  ?>
+                    </table>
+                </div>
             </div>
+            <!---->
+         </div>
+
 
             <div class="modal" id="myModal2">
                 <div class="modal-dialog">
@@ -240,7 +332,7 @@ $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
                         </form>
                     </div>
                 </div>
-            </div>
+        </div>
 <!--  -->
             <div class="modal" id="myModal5">
                 <div class="modal-dialog">
