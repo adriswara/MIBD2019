@@ -39,6 +39,10 @@ $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
 $sqlLaporanA = ('SELECT hargaPesanan,hargaPesanan,idPesanan,idUser,tanggal from pesanan WHERE CURDATE() - tanggal <= "7"');
 $laporanAQ = mysqli_query($con, $sqlLaporanA) or die(mysqli_error($con));
 //
+//Load kasir yang handle penjual terbayak
+$sqlLaporanC = ('SELECT COUNT(idPesanan)as jumlahJual ,idUser FROM pesanan GROUP BY idUser');
+$laporanCQ = mysqli_query($con,$sqlLaporanC) or die(mysqli_error($con));
+//
 
 //load penjualan
 $sqlLaporan = ('SELECT * from pesanan ');
@@ -208,10 +212,10 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                 <h5 class="py-3">Data Laporan</h5>
               <!--  <input type="submit" value="Tambah Kasir" class="btn btn-secondary" data-toggle="modal" data-target="#myModal3"> -->
                <!-- <input type="submit" value="Transaksi Rentang 7 Hari" class="btn btn-danger"> -->
-               <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">Penjualan Rentang 7 Hari</button>
+               <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo1">Penjualan Rentang 7 Hari</button>
                 
 
-                <div id="demo" class="collapse">
+                <div id="demo1" class="collapse">
                     <table border="2">
                         <tr>
                             <th>
@@ -250,12 +254,50 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
          
             <!---->
 
+            <!-- laporanC -->
+            <div class="tab-pane fade active show" id="kasirUID" role="tabpanel" aria-labelledby="nav-contact-tab">
+                <h5 class="py-3">Data Laporan</h5>
+              <!--  <input type="submit" value="Tambah Kasir" class="btn btn-secondary" data-toggle="modal" data-target="#myModal3"> -->
+               <!-- <input type="submit" value="Transaksi Rentang 7 Hari" class="btn btn-danger"> -->
+               <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo2">Penjualan terbanyak yang di handle oleh kasir</button>
+                
+
+                <div id="demo2" class="collapse">
+                    <table border="2">
+                        <tr>
+                            <th>
+                                Jumlah Penjualan
+                            </th>
+                            <th>
+                                ID Kasir
+                            </th>
+                        </tr>
+                        <?php while($laporanC = mysqli_fetch_array($laporanCQ)): ?>
+                            <tr>
+                                <td>
+                                    <?= $laporanC['jumlahJual'] ?>
+                                </td>
+                               
+                                <td>
+                                    <?= $laporanC['idUser'] ?>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </table>
+                </div>
+         
+            <!---->
+
             <!-- laporanB -->
             <div class="tab-pane fade active show " id="kasirUID" role="tabpanel" aria-labelledby="nav-contact-tab">
                 <h5 class="py-3">Data Laporan</h5>
               <!--  <input type="submit" value="Tambah Kasir" class="btn btn-secondary" data-toggle="modal" data-target="#myModal3"> -->
                <!-- <input type="submit" value="Transaksi Rentang 7 Hari" class="btn btn-danger"> -->
-               <!-- <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">Penjualan Rentang Waktu</button> -->
+               <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo3">Penjualan Rentang Waktu</button>
+
+               <div id="demo3" class="collapse">
 
                 <form action="admin.php" method="post" >
                 <input type="date" name="inputRentangAwal" data-date-format="YYYY MMMM DD">
@@ -265,7 +307,7 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
 
                 
 
-                <div id="" class="">
+             
                     <table border="2">
                         <tr>
                             <th>
