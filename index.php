@@ -74,8 +74,13 @@ $conn = mysqli_connect('localhost','root','','pizza');
 
 <?php
 
+//if untuk pengecekan masuk jika not null menghilangi eror php
+
+if(isset($_POST["username"])&&$_POST["username"]!=NULL){
+
 $usernameField = $_POST["username"];   
 $passwordField = $_POST["password"];
+
 
 $result = mysqli_query($conn,"SELECT * FROM pengguna WHERE username='".$usernameField."' AND password='".$passwordField."'");
 $rowcount=mysqli_num_rows($result);
@@ -102,6 +107,7 @@ function login(){
     }
   }
 
+}
 }
 
 
