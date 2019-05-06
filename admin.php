@@ -209,7 +209,7 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
 
             </div>
             <!-- laporanA -->
-            <div class="tab-pane fade active show" id="kasirUID" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <div class="tab-pane fade " id="kasirUID" role="tabpanel" aria-labelledby="nav-contact-tab">
                 <h5 class="py-3">Data Laporan</h5>
               <!--  <input type="submit" value="Tambah Kasir" class="btn btn-secondary" data-toggle="modal" data-target="#myModal3"> -->
                <!-- <input type="submit" value="Transaksi Rentang 7 Hari" class="btn btn-danger"> -->
@@ -252,11 +252,8 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                         <?php endwhile; ?>
                     </table>
                 </div>
-         
-            <!---->
-
-            <!-- laporanC -->
-            <div class="tab-pane fade active show" id="kasirUID" role="tabpanel" aria-labelledby="nav-contact-tab">
+                
+                <!-- laporanC -->
                 <h5 class="py-3"></h5>
               <!--  <input type="submit" value="Tambah Kasir" class="btn btn-secondary" data-toggle="modal" data-target="#myModal3"> -->
                <!-- <input type="submit" value="Transaksi Rentang 7 Hari" class="btn btn-danger"> -->
@@ -288,11 +285,8 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                         <?php endwhile; ?>
                     </table>
                 </div>
-         
-            <!---->
-
-            <!-- laporanB -->
-            <div class="tab-pane fade active show " id="kasirUID" role="tabpanel" aria-labelledby="nav-contact-tab">
+                <!---->
+                  <!-- laporanB -->
                 <h5 class="py-3"></h5>
               <!--  <input type="submit" value="Tambah Kasir" class="btn btn-secondary" data-toggle="modal" data-target="#myModal3"> -->
                <!-- <input type="submit" value="Transaksi Rentang 7 Hari" class="btn btn-danger"> -->
@@ -306,7 +300,7 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                 <button type="submit">Submit</button>
                 </form>                
 
-                
+                <br>
 
              
                     <table border="2">
@@ -349,7 +343,7 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                 </div>
             </div>
             <!---->
-         </div>
+         
 
 
             <div class="modal" id="myModal2">
