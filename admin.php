@@ -100,9 +100,10 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
 </head>
 <body>
     <nav class="navbar navbar-light" style="background-color: #c59579;">
-        <a class="navbar-brand" href="index.php">
+        <a class="navbar-brand" >
             <img class="pizzaImage" src="asset/pizzaretro.png" width="30" height="30" class="d-inline-block align-top" alt="">
         Pizzay</a>
+        <a class="btn btn-dark my-2 my-sm-0" href="index.php" >Logout</a>
     </nav>
 
     <div class="container containerLuar" id="selectContainer">
@@ -256,7 +257,7 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
 
             <!-- laporanC -->
             <div class="tab-pane fade active show" id="kasirUID" role="tabpanel" aria-labelledby="nav-contact-tab">
-                <h5 class="py-3">Data Laporan</h5>
+                <h5 class="py-3"></h5>
               <!--  <input type="submit" value="Tambah Kasir" class="btn btn-secondary" data-toggle="modal" data-target="#myModal3"> -->
                <!-- <input type="submit" value="Transaksi Rentang 7 Hari" class="btn btn-danger"> -->
                <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo2">Penjualan terbanyak yang di handle oleh kasir</button>
@@ -292,7 +293,7 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
 
             <!-- laporanB -->
             <div class="tab-pane fade active show " id="kasirUID" role="tabpanel" aria-labelledby="nav-contact-tab">
-                <h5 class="py-3">Data Laporan</h5>
+                <h5 class="py-3"></h5>
               <!--  <input type="submit" value="Tambah Kasir" class="btn btn-secondary" data-toggle="modal" data-target="#myModal3"> -->
                <!-- <input type="submit" value="Transaksi Rentang 7 Hari" class="btn btn-danger"> -->
                <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo3">Penjualan Rentang Waktu</button>

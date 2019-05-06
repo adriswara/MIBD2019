@@ -29,9 +29,10 @@ $hargatopping = ('select namaTopping, SUM(hargatopping) from pizza_pesanan_toppi
 <body>
 
     <nav class="navbar navbar-light" style="background-color: #c59579;">
-        <a class="navbar-brand" href="index.php">
+        <a class="navbar-brand" >
             <img class="pizzaImage" src="asset/pizzaretro.png" width="30" height="30" class="d-inline-block align-top" alt="">
         Pizzay</a>
+        <a class="btn btn-dark my-2 my-sm-0" href="index.php" >Logout</a>
     </nav>
 
     <div class="container" id="selectContainer">
