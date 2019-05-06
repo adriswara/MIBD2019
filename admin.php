@@ -325,7 +325,7 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                             </th>
                         </tr>
                        
-                        <?php
+                        <?php if(isset($sqlLaporanB)){
                                 
                                  while($laporanB = mysqli_fetch_array($sqlLaporanB)): ?>
                             <tr>
@@ -344,7 +344,7 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                                 <td>
                                 </td>
                             </tr>
-                        <?php endwhile;  ?>
+                        <?php endwhile;  }?>
                     </table>
                 </div>
             </div>

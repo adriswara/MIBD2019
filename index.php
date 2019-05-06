@@ -28,7 +28,7 @@ $conn = mysqli_connect('localhost','root','','pizza');
     Pizzay</a>
   </nav>
 
-  <div class="container" id="welcomeContainer">
+  <div class="container containerLuar align-middle " id="welcomeContainer">
 
    <center><h1 class="judulAwal" style="top:-10%" >Selamat datang di Pizzay!!!</h1></center> 
    <center><h3 class="judulAwal">Silahkan Login Dibawah ini</h3></center>
