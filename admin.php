@@ -198,7 +198,7 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                                     ?>
                                 </td>
                                 <td class="text-center">
-                                    <button onclick="edit_pengguna(<?= $kasirs['idUser'] ?>, '<?= $kasirs['nama'] ?>','<?= $kasirs['password'] ?>','<?= $kasirs['password'] ?>', <?= $kasirs['role'] ?>)" class="btn btn-warning">UBAH</button>
+                                    <button onclick="edit_pengguna(<?= $kasirs['idUser'] ?>, '<?= $kasirs['nama'] ?>','<?= $kasirs['username'] ?>','<?= $kasirs['password'] ?>', <?= $kasirs['role'] ?>)" class="btn btn-warning">UBAH</button>
                                     <button onclick="delete_pengguna(<?= $kasirs['idUser'] ?>, '<?= $kasirs['nama'] ?>', <?= $kasirs['role'] ?>)" class="btn btn-danger">HAPUS</button>
 
                                 </td>
@@ -351,7 +351,6 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title">Ubah Pengguna</h4><br>
-                            <h4>1:Admin 2:Kasir</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <form action="./kasir/edit_pengguna.php" method="post">

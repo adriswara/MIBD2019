@@ -4,7 +4,10 @@ $sqltopping = ('select * from topping');
 $topping= mysqli_query($con, $sqltopping) or die(mysqli_error($con));
 
 $hargapizza = ('select hargaPizza FROM pizza');
-$hargatopping = ('select namaTopping, SUM(hargatopping) from pizza_pesanan_topping join topping on pizza_pesanan_topping.idTopping = topping.idTopping group by namaTopping')
+$hargatopping = ('select namaTopping, SUM(hargatopping) from pizza_pesanan_topping join topping on 
+    pizza_pesanan_topping.idTopping = topping.idTopping group by namaTopping');
+
+$hargaPesanan = $hargapizza+$hargatopping;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -101,21 +104,67 @@ $hargatopping = ('select namaTopping, SUM(hargatopping) from pizza_pesanan_toppi
                 </tbody>
             </table>
         </div>
+        <input type="submit" value="Konfirmasi Pesanan" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">
         
     </div>
-    
-</body>
 
-<script type="text/javascript">
-    function pilih_topping(topping_id, topping_name, topping_price) {
-        $('#topping_id').val(topping_id);
-        $('#topping_name').val(topping_name);
-        $('#topping_price').val(topping_price);
-        $('#edit_topping').click();
-    }
+    <div class="modal" id="myModal1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Pesanan</h4><br>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <form action="./kasir/edit_pengguna.php" method="post">
+                    <div class="modal-body">
+                        <table border="2">
+                            <tr>
+                                <th>
+                                    Topping
+                                </th>
+                                <th>
+                                    Harga
+                                </th>                            
+                            </tr>
 
-</script>
+                                <?php if(isset($transaksi)){
+
+                                 while($transaksi = mysqli_fetch_array($sqlLaporanB)): ?>
+                                    <tr>
+                                        <td>
+                                            <?= $transaksi['idPesanan'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $transaksi['hargaPesanan'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $laporanB['tanggal'] ?>
+                                        </td>
+                                    </tr>
+                                <?php endwhile;  }?>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger">Submit</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+    <script type="text/javascript">
+        function pilih_topping(topping_id, topping_name, topping_price) {
+            $('#topping_id').val(topping_id);
+            $('#topping_name').val(topping_name);
+            $('#topping_price').val(topping_price);
+            $('#edit_topping').click();
+        }
+
+    </script>
 
 
 
-</html>
+    </html>
