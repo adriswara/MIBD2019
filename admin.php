@@ -1,18 +1,4 @@
 <?php
-session_start();
-$conn = mysqli_connect('localhost','root','','pizza');
-if (isset($_SESSION['session_key'])) {
-  $session_key = $_SESSION["session_key"];
-  $query = "SELECT * FROM pengguna WHERE idUser=$session_key";
-  $result= mysqli_query($conn, $query) or die(mysqli_error($conn));
-  if(mysqli_num_rows($result) == 1){
-    $res_arr = mysqli_fetch_array($result);
-    $role = $res_arr["role"];
-    if($role!="1") {
-      header('Location: ./kasir.php');
-    }
-  }
-}
 $con = mysqli_connect('localhost','root','','pizza');
 if(isset($_POST["inputTop"]) && $_POST["inputTop"] !=NULL){
     $inputTopping = $_POST["inputTop"];
@@ -50,11 +36,11 @@ $sqlkasir = ('select * from pengguna where role="2"');
 $kasir = mysqli_query($con, $sqlkasir) or die(mysqli_error($con));
 //
 //load laporanPenjualan 7 hari
-$sqlLaporanA = ('SELECT hargaPesanan,hargaPesanan,idPesanan,tanggal, nama from pesanan left join pengguna on pesanan.idUser = pengguna.idUser WHERE CURDATE() - tanggal <= "7"');
+$sqlLaporanA = ('SELECT hargaPesanan,hargaPesanan,idPesanan,idUser,tanggal from pesanan WHERE CURDATE() - tanggal <= "7"');
 $laporanAQ = mysqli_query($con, $sqlLaporanA) or die(mysqli_error($con));
 //
 //Load kasir yang handle penjual terbayak
-$sqlLaporanC = ('SELECT COUNT(idPesanan)as jumlahJual ,pengguna.idUser , nama FROM pesanan LEFT JOIN pengguna ON pengguna.idUser = pesanan.idUser GROUP BY pesanan.idUser');
+$sqlLaporanC = ('SELECT COUNT(idPesanan)as jumlahJual ,idUser FROM pesanan GROUP BY idUser');
 $laporanCQ = mysqli_query($con,$sqlLaporanC) or die(mysqli_error($con));
 //
 
@@ -117,7 +103,7 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
         <a class="navbar-brand" >
             <img class="pizzaImage" src="asset/pizzaretro.png" width="30" height="30" class="d-inline-block align-top" alt="">
         Pizzay</a>
-        <a class="btn btn-dark my-2 my-sm-0" href="./logout.php" >Logout</a>
+        <a class="btn btn-dark my-2 my-sm-0" href="index.php" >Logout</a>
     </nav>
 
     <div class="container containerLuar" id="selectContainer">
@@ -212,7 +198,7 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                                     ?>
                                 </td>
                                 <td class="text-center">
-                                    <button onclick="edit_pengguna(<?= $kasirs['idUser'] ?>, '<?= $kasirs['nama'] ?>','<?= $kasirs['username'] ?>','<?= $kasirs['password'] ?>', <?= $kasirs['role'] ?>)" class="btn btn-warning">UBAH</button>
+                                    <button onclick="edit_pengguna(<?= $kasirs['idUser'] ?>, '<?= $kasirs['nama'] ?>','<?= $kasirs['password'] ?>','<?= $kasirs['password'] ?>', <?= $kasirs['role'] ?>)" class="btn btn-warning">UBAH</button>
                                     <button onclick="delete_pengguna(<?= $kasirs['idUser'] ?>, '<?= $kasirs['nama'] ?>', <?= $kasirs['role'] ?>)" class="btn btn-danger">HAPUS</button>
 
                                 </td>
@@ -231,10 +217,10 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                 
 
                 <div id="demo1" class="collapse">
-                    <table class="table table-striped table-bordered" style="width:100%">
+                    <table border="2">
                         <tr>
                             <th>
-                                ID Pesanan
+                                ID
                             </th>
                             <th>
                                 Harga Pesanan
@@ -243,13 +229,13 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                                 Tanggal
                             </th>
                             <th>
-                                Kasir
+                                ID Kasir
                             </th>
                         </tr>
                         <?php while($laporanA = mysqli_fetch_array($laporanAQ)): ?>
                             <tr>
                                 <td>
-                                    <?= $laporanA['idPesanan'] ?>
+                                    <?= $laporanA['idUser'] ?>
                                 </td>
                                 <td>
                                     <?= $laporanA['hargaPesanan'] ?>
@@ -258,7 +244,9 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                                     <?= $laporanA['tanggal'] ?>
                                 </td>
                                 <td>
-                                    <?= $laporanA['nama'] ?>
+                                    <?= $laporanA['idUser'] ?>
+                                </td>
+                                <td>
                                 </td>
                             </tr>
                         <?php endwhile; ?>
@@ -273,13 +261,13 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                 
 
                 <div id="demo2" class="collapse">
-                    <table class="table table-striped table-bordered" style="width:100%">
+                    <table border="2">
                         <tr>
                             <th>
                                 Jumlah Penjualan
                             </th>
                             <th>
-                                Kasir
+                                ID Kasir
                             </th>
                         </tr>
                         <?php while($laporanC = mysqli_fetch_array($laporanCQ)): ?>
@@ -289,7 +277,9 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                                 </td>
                                
                                 <td>
-                                    <?= $laporanC['nama'] ?>
+                                    <?= $laporanC['idUser'] ?>
+                                </td>
+                                <td>
                                 </td>
                             </tr>
                         <?php endwhile; ?>
@@ -300,8 +290,7 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                 <h5 class="py-3"></h5>
               <!--  <input type="submit" value="Tambah Kasir" class="btn btn-secondary" data-toggle="modal" data-target="#myModal3"> -->
                <!-- <input type="submit" value="Transaksi Rentang 7 Hari" class="btn btn-danger"> -->
-              
-              <!--  <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo3">Penjualan Rentang Waktu</button> -->
+               <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo3">Penjualan Rentang Waktu</button>
 
                <div id="demo3" class="collapse">
 
@@ -314,7 +303,7 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                 <br>
 
              
-                    <table class="table table-striped table-bordered" style="width:100%">
+                    <table border="2">
                         <tr>
                             <th>
                                 ID
@@ -346,6 +335,8 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                                 <td>
                                     <?= $laporanB['idUser'] ?>
                                 </td>
+                                <td>
+                                </td>
                             </tr>
                         <?php endwhile;  }?>
                     </table>
@@ -360,6 +351,7 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title">Ubah Pengguna</h4><br>
+                            <h4>1:Admin 2:Kasir</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <form action="./kasir/edit_pengguna.php" method="post">
