@@ -1,7 +1,21 @@
 
 <?php
+session_start();
 $conn = mysqli_connect('localhost','root','','pizza');
-
+if (isset($_SESSION['session_key'])) {
+  $session_key = $_SESSION["session_key"];
+  $query = "SELECT * FROM pengguna WHERE idUser=$session_key";
+  $result= mysqli_query($conn, $query) or die(mysqli_error($conn));
+  if(mysqli_num_rows($result) == 1){
+    $res_arr = mysqli_fetch_array($result);
+    $role = $res_arr["role"];
+    if($role=="1") {
+      header('Location: ./admin.php');
+    }else{
+      header('Location: ./kasir.php');
+    }
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +63,7 @@ $conn = mysqli_connect('localhost','root','','pizza');
               <span class="username">Username:</span> 
             </div>
             <div class="col-md-6">
-              <input type="text" class="username" name="username" value="bima">
+              <input type="text" class="username" name="username" value="Tito678">
             </div>
             <div class="col-md-6">
               <span class="pass">Password:</span>
@@ -74,43 +88,29 @@ $conn = mysqli_connect('localhost','root','','pizza');
 
 <?php
 
-//if untuk pengecekan masuk jika not null menghilangi eror php
+// if untuk pengecekan masuk jika not null menghilangi eror php
 
 if(isset($_POST["username"])&&$_POST["username"]!=NULL){
+  $usernameField = $_POST["username"];   
+  $passwordField = $_POST["password"];
 
-$usernameField = $_POST["username"];   
-$passwordField = $_POST["password"];
 
-
-$result = mysqli_query($conn,"SELECT * FROM pengguna WHERE username='".$usernameField."' AND password='".$passwordField."'");
-$rowcount=mysqli_num_rows($result);
-if($rowcount == 1){
-  while($row = $result->fetch_assoc()) {
-    if($row["role"]=="1"){
+  $result = mysqli_query($conn,"SELECT * FROM pengguna WHERE username='".$usernameField."' AND password='".$passwordField."'");
+  $rowcount=mysqli_num_rows($result);
+  if($rowcount == 1){
+    $res_arr = mysqli_fetch_array($result);
+    $role = $res_arr["role"];
+    $id = $res_arr["idUser"];
+    $_SESSION["session_key"] =  $id;
+    if($role=="1"){
       header('Location: ./admin.php');
     }else{
       header('Location: ./kasir.php');
     }
+  }else{
+    echo "USERNAME AND PASSWORD NOT MATCH!";
   }
-}else{
-  echo "USERNAME AND PASSWORD NOT MATCH!";
-  header('Location: ');
 }
-function login(){
-
-  if($row["nama"]==$usernameField && $row["password"]==$passwordField){
-    if($row["role"]==1){
-      echo "admin.php";
-    }
-    else if ($row["role"]==0){
-      echo "kasir.php";
-    }
-  }
-
-}
-}
-
-
 
 ?>
 
