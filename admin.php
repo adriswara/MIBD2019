@@ -84,6 +84,7 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -98,28 +99,31 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <title>Document</title>
 </head>
+
 <body>
     <nav class="navbar navbar-light" style="background-color: #c59579;">
-        <a class="navbar-brand" >
-            <img class="pizzaImage" src="asset/pizzaretro.png" width="30" height="30" class="d-inline-block align-top" alt="">
-        Pizzay</a>
-        <a class="btn btn-dark my-2 my-sm-0" href="index.php" >Logout</a>
+        <a class="navbar-brand">
+            <img class="pizzaImage" src="asset/pizzaretro.png" width="30" height="30" class="d-inline-block align-top"
+                alt="">
+            Pizzay</a>
+        <a class="btn btn-dark my-2 my-sm-0" href="logout.php">Logout</a>
     </nav>
 
     <div class="container containerLuar" id="selectContainer">
-        <div class="header" style ="height: 100px;">
+        <div class="header" style="height: 100px;">
             <h3 class="judulAwal" style="top:-10%">Halaman Admin</h3>
         </div>
 
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link nav-item active" role="tab" aria-controls="toppingUID" data-toggle="tab" href="#toppingUID">Topping</a>
+                <a class="nav-link nav-item active" role="tab" aria-controls="toppingUID" data-toggle="tab"
+                    href="#toppingUID">Topping</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link"  role="tab" aria-controls="adminUID" data-toggle="tab" href="#adminUID">Pengguna</a>
+                <a class="nav-link" role="tab" aria-controls="adminUID" data-toggle="tab" href="#adminUID">Pengguna</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link"  role="tab" aria-controls="kasirUID" data-toggle="tab" href="#kasirUID">Laporan</a>
+                <a class="nav-link" role="tab" aria-controls="kasirUID" data-toggle="tab" href="#kasirUID">Laporan</a>
             </li>
         </ul>
         <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
@@ -129,8 +133,10 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                         <h5 class="py-3">Topping</h5>
                     </div>
                     <div class="col-md text-right">
-                        <input type="submit" value="Tambah Topping" class="btn btn-primary" data-toggle="modal" data-target="#myModal13">
-                        <input type="submit" value="" class="btn btn-primary" data-toggle="modal" data-target="#myModal14" id="edit_topping" style="display: none;">
+                        <input type="submit" value="Tambah Topping" class="btn btn-primary" data-toggle="modal"
+                            data-target="#myModal13">
+                        <input type="submit" value="" class="btn btn-primary" data-toggle="modal"
+                            data-target="#myModal14" id="edit_topping" style="display: none;">
                     </div>
                 </div>
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
@@ -143,18 +149,22 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                     </thead>
                     <tbody>
                         <?php while($toppings = mysqli_fetch_array($topping)): ?>
-                            <tr>
-                                <td>
-                                    <?= $toppings['namaTopping'] ?>
-                                </td>
-                                <td>
-                                    <?= $toppings['hargaTopping'] ?>
-                                </td>
-                                <td class="text-center">
-                                    <button onclick="edit_topping(<?= $toppings['idTopping'] ?>, '<?= $toppings['namaTopping'] ?>', <?= $toppings['hargaTopping'] ?>)" class="btn btn-warning">UBAH</button>
-                                    <button onclick="delete_topping(<?= $toppings['idTopping'] ?>, '<?= $toppings['namaTopping'] ?>')" class="btn btn-danger">HAPUS</button>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                <?= $toppings['namaTopping'] ?>
+                            </td>
+                            <td>
+                                <?= $toppings['hargaTopping'] ?>
+                            </td>
+                            <td class="text-center">
+                                <button
+                                    onclick="edit_topping(<?= $toppings['idTopping'] ?>, '<?= $toppings['namaTopping'] ?>', <?= $toppings['hargaTopping'] ?>)"
+                                    class="btn btn-warning">UBAH</button>
+                                <button
+                                    onclick="delete_topping(<?= $toppings['idTopping'] ?>, '<?= $toppings['namaTopping'] ?>')"
+                                    class="btn btn-danger">HAPUS</button>
+                            </td>
+                        </tr>
                         <?php endwhile; ?>
                     </tbody>
                 </table>
@@ -166,8 +176,10 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                         <h5 class="py-3">Pengguna</h5>
                     </div>
                     <div class="col-md text-right">
-                        <input type="submit" value="Tambah Kasir" class="btn btn-primary" data-toggle="modal" data-target="#myModal5">
-                        <input type="submit" value="" class="btn btn-primary" data-toggle="modal" data-target="#myModal2" id="edit_pengguna" style="display: none">
+                        <input type="submit" value="Tambah Kasir" class="btn btn-primary" data-toggle="modal"
+                            data-target="#myModal5">
+                        <input type="submit" value="" class="btn btn-primary" data-toggle="modal"
+                            data-target="#myModal2" id="edit_pengguna" style="display: none">
                     </div>
                 </div>
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
@@ -181,28 +193,32 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                     </thead>
                     <tbody>
                         <?php while($kasirs = mysqli_fetch_array($kasir)): ?>
-                            <tr>
-                                <td>
-                                    <?= $kasirs['idUser'] ?>
-                                </td>
-                                <td>
-                                    <?= $kasirs['nama'] ?>
-                                </td>
-                                <td>
-                                    <?php 
+                        <tr>
+                            <td>
+                                <?= $kasirs['idUser'] ?>
+                            </td>
+                            <td>
+                                <?= $kasirs['nama'] ?>
+                            </td>
+                            <td>
+                                <?php 
                                     if($kasirs['role']==1){
                                         echo "ADMIN";
                                     }else{
                                         echo "KASIR";
                                     } 
                                     ?>
-                                </td>
-                                <td class="text-center">
-                                    <button onclick="edit_pengguna(<?= $kasirs['idUser'] ?>, '<?= $kasirs['nama'] ?>','<?= $kasirs['password'] ?>','<?= $kasirs['password'] ?>', <?= $kasirs['role'] ?>)" class="btn btn-warning">UBAH</button>
-                                    <button onclick="delete_pengguna(<?= $kasirs['idUser'] ?>, '<?= $kasirs['nama'] ?>', <?= $kasirs['role'] ?>)" class="btn btn-danger">HAPUS</button>
+                            </td>
+                            <td class="text-center">
+                                <button
+                                    onclick="edit_pengguna(<?= $kasirs['idUser'] ?>, '<?= $kasirs['nama'] ?>','<?= $kasirs['password'] ?>','<?= $kasirs['password'] ?>', <?= $kasirs['role'] ?>)"
+                                    class="btn btn-warning">UBAH</button>
+                                <button
+                                    onclick="delete_pengguna(<?= $kasirs['idUser'] ?>, '<?= $kasirs['nama'] ?>', <?= $kasirs['role'] ?>)"
+                                    class="btn btn-danger">HAPUS</button>
 
-                                </td>
-                            </tr>
+                            </td>
+                        </tr>
                         <?php endwhile; ?>
                     </tbody>
                 </table>
@@ -211,10 +227,11 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
             <!-- laporanA -->
             <div class="tab-pane fade " id="kasirUID" role="tabpanel" aria-labelledby="nav-contact-tab">
                 <h5 class="py-3">Data Laporan</h5>
-              <!--  <input type="submit" value="Tambah Kasir" class="btn btn-secondary" data-toggle="modal" data-target="#myModal3"> -->
-               <!-- <input type="submit" value="Transaksi Rentang 7 Hari" class="btn btn-danger"> -->
-               <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo1">Penjualan Rentang 7 Hari</button>
-                
+                <!--  <input type="submit" value="Tambah Kasir" class="btn btn-secondary" data-toggle="modal" data-target="#myModal3"> -->
+                <!-- <input type="submit" value="Transaksi Rentang 7 Hari" class="btn btn-danger"> -->
+                <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo1">Penjualan
+                    Rentang 7 Hari</button>
+
 
                 <div id="demo1" class="collapse">
                     <table border="2">
@@ -233,32 +250,33 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                             </th>
                         </tr>
                         <?php while($laporanA = mysqli_fetch_array($laporanAQ)): ?>
-                            <tr>
-                                <td>
-                                    <?= $laporanA['idUser'] ?>
-                                </td>
-                                <td>
-                                    <?= $laporanA['hargaPesanan'] ?>
-                                </td>
-                                <td>
-                                    <?= $laporanA['tanggal'] ?>
-                                </td>
-                                <td>
-                                    <?= $laporanA['idUser'] ?>
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                <?= $laporanA['idUser'] ?>
+                            </td>
+                            <td>
+                                <?= $laporanA['hargaPesanan'] ?>
+                            </td>
+                            <td>
+                                <?= $laporanA['tanggal'] ?>
+                            </td>
+                            <td>
+                                <?= $laporanA['idUser'] ?>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
                         <?php endwhile; ?>
                     </table>
                 </div>
-                
+
                 <!-- laporanC -->
                 <h5 class="py-3"></h5>
-              <!--  <input type="submit" value="Tambah Kasir" class="btn btn-secondary" data-toggle="modal" data-target="#myModal3"> -->
-               <!-- <input type="submit" value="Transaksi Rentang 7 Hari" class="btn btn-danger"> -->
-               <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo2">Penjualan terbanyak yang di handle oleh kasir</button>
-                
+                <!--  <input type="submit" value="Tambah Kasir" class="btn btn-secondary" data-toggle="modal" data-target="#myModal3"> -->
+                <!-- <input type="submit" value="Transaksi Rentang 7 Hari" class="btn btn-danger"> -->
+                <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo2">Penjualan
+                    terbanyak yang di handle oleh kasir</button>
+
 
                 <div id="demo2" class="collapse">
                     <table border="2">
@@ -271,38 +289,39 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                             </th>
                         </tr>
                         <?php while($laporanC = mysqli_fetch_array($laporanCQ)): ?>
-                            <tr>
-                                <td>
-                                    <?= $laporanC['jumlahJual'] ?>
-                                </td>
-                               
-                                <td>
-                                    <?= $laporanC['idUser'] ?>
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                <?= $laporanC['jumlahJual'] ?>
+                            </td>
+
+                            <td>
+                                <?= $laporanC['idUser'] ?>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
                         <?php endwhile; ?>
                     </table>
                 </div>
                 <!---->
-                  <!-- laporanB -->
+                <!-- laporanB -->
                 <h5 class="py-3"></h5>
-              <!--  <input type="submit" value="Tambah Kasir" class="btn btn-secondary" data-toggle="modal" data-target="#myModal3"> -->
-               <!-- <input type="submit" value="Transaksi Rentang 7 Hari" class="btn btn-danger"> -->
-               <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo3">Penjualan Rentang Waktu</button>
+                <!--  <input type="submit" value="Tambah Kasir" class="btn btn-secondary" data-toggle="modal" data-target="#myModal3"> -->
+                <!-- <input type="submit" value="Transaksi Rentang 7 Hari" class="btn btn-danger"> -->
+                <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo3">Penjualan
+                    Rentang Waktu</button>
 
-               <div id="demo3" class="collapse">
+                <div id="demo3" class="collapse">
 
-                <form action="admin.php" method="post" >
-                <input type="date" name="inputRentangAwal" data-date-format="YYYY MMMM DD">
-                <input type="date"name="inputRentangAkhir" data-date-format="YYYY MMMM DD">
-                <button type="submit">Submit</button>
-                </form>                
+                    <form action="admin.php" method="post">
+                        <input type="date" name="inputRentangAwal" data-date-format="YYYY MMMM DD">
+                        <input type="date" name="inputRentangAkhir" data-date-format="YYYY MMMM DD">
+                        <button type="submit">Submit</button>
+                    </form>
 
-                <br>
+                    <br>
 
-             
+
                     <table border="2">
                         <tr>
                             <th>
@@ -318,32 +337,32 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                                 ID Kasir
                             </th>
                         </tr>
-                       
+
                         <?php if(isset($sqlLaporanB)){
                                 
                                  while($laporanB = mysqli_fetch_array($sqlLaporanB)): ?>
-                            <tr>
-                                <td>
-                                    <?= $laporanB['idPesanan'] ?>
-                                </td>
-                                <td>
-                                    <?= $laporanB['hargaPesanan'] ?>
-                                </td>
-                                <td>
-                                    <?= $laporanB['tanggal'] ?>
-                                </td>
-                                <td>
-                                    <?= $laporanB['idUser'] ?>
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                <?= $laporanB['idPesanan'] ?>
+                            </td>
+                            <td>
+                                <?= $laporanB['hargaPesanan'] ?>
+                            </td>
+                            <td>
+                                <?= $laporanB['tanggal'] ?>
+                            </td>
+                            <td>
+                                <?= $laporanB['idUser'] ?>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
                         <?php endwhile;  }?>
                     </table>
                 </div>
             </div>
             <!---->
-         
+
 
 
             <div class="modal" id="myModal2">
@@ -356,11 +375,13 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                         </div>
                         <form action="./kasir/edit_pengguna.php" method="post">
                             <div class="modal-body">
-                                <span style="display: none;">ID </span> <input type="number" id="user_id" name="id" style="display: none;">
+                                <span style="display: none;">ID </span> <input type="number" id="user_id" name="id"
+                                    style="display: none;">
                                 <span>Nama Pengguna</span> <input type="text" id="user_name" name="name"><br>
                                 <span>Username</span> <input type="text" id="user_username" name="username"><br>
                                 <span>Password</span> <input type="text" id="user_password" name="password">
-                                <span style="display: none">Jabatan</span> <input type="number" id="user_role" name="role" style="display:none">
+                                <span style="display: none">Jabatan</span> <input type="number" id="user_role"
+                                    name="role" style="display:none">
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-danger">Submit</button>
@@ -369,8 +390,8 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                         </form>
                     </div>
                 </div>
-        </div>
-<!--  -->
+            </div>
+            <!--  -->
             <div class="modal" id="myModal5">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -380,7 +401,8 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                         </div>
                         <form action="./kasir/add_kasir.php" method="post">
                             <div class="modal-body">
-                                <span style="display: none;">ID </span> <input type="number" id="user_id" name="id" style="display: none;">
+                                <span style="display: none;">ID </span> <input type="number" id="user_id" name="id"
+                                    style="display: none;">
                                 <span>Nama Pengguna</span> <input type="text" id="name" name="name"><br>
                                 <span>Username</span> <input type="text" id="username" name="username"><br>
                                 <span>Password</span> <input type="text" id="password" name="password"><br>
@@ -424,7 +446,8 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
                         </div>
                         <form action="./topping/edit_topping.php" method="post">
                             <div class="modal-body">
-                                <span style="display: none;">ID </span> <input type="number" id="topping_id" name="id" style="display: none;">
+                                <span style="display: none;">ID </span> <input type="number" id="topping_id" name="id"
+                                    style="display: none;">
                                 <span>Nama </span> <input type="text" id="topping_name" name="name">
                                 <span>Harga </span> <input type="number" id="topping_price" name="price">
                             </div>
@@ -440,47 +463,49 @@ if(isset($_POST["inputRentangAwal"]) && $_POST["inputRentangAwal"]){
         <?php
         ?>
         <script type="text/javascript">
-            function edit_topping(topping_id, topping_name, topping_price) {
-                $('#topping_id').val(topping_id);
-                $('#topping_name').val(topping_name);
-                $('#topping_price').val(topping_price);
-                $('#edit_topping').click();
-            }
-            function delete_topping(topping_id, topping_name) {
-                conf = confirm("Apakah Anda akan menghapus topping "+topping_name+" ?");
-                if(conf==true){
-                    $.post("./topping/delete_topping.php",
-                    {
-                        idTopping: topping_id
-                    },                       
-                    function(data, status){
-                        alert("Topping "+topping_name+" telah berhasil dihapus."); 
-                        location.reload(true);
-                    });
-                }
-            }
-            function edit_pengguna(user_id, user_name, user_username, user_password, user_role){
-                $('#user_id').val(user_id);
-                $('#user_name').val(user_name);
-                $('#user_username').val(user_username);
-                $('#user_password').val(user_password);
-                $('#user_role').val(user_role);
-                $('#edit_pengguna').click();    
+        function edit_topping(topping_id, topping_name, topping_price) {
+            $('#topping_id').val(topping_id);
+            $('#topping_name').val(topping_name);
+            $('#topping_price').val(topping_price);
+            $('#edit_topping').click();
+        }
 
-            }
-            function delete_pengguna(user_id, user_name) {
-                conf = confirm("Apakah Anda akan menghapus user "+user_name+" ?");
-                if(conf==true){
-                    $.post("./kasir/delete_pengguna.php",
-                    {
-                        idUser: user_id
-                    },                       
-                    function(data, status){
-                        alert("User "+user_name+" telah berhasil dihapus."); 
+        function delete_topping(topping_id, topping_name) {
+            conf = confirm("Apakah Anda akan menghapus topping " + topping_name + " ?");
+            if (conf == true) {
+                $.post("./topping/delete_topping.php", {
+                        idTopping: topping_id
+                    },
+                    function(data, status) {
+                        alert("Topping " + topping_name + " telah berhasil dihapus.");
                         location.reload(true);
                     });
-                }
             }
+        }
+
+        function edit_pengguna(user_id, user_name, user_username, user_password, user_role) {
+            $('#user_id').val(user_id);
+            $('#user_name').val(user_name);
+            $('#user_username').val(user_username);
+            $('#user_password').val(user_password);
+            $('#user_role').val(user_role);
+            $('#edit_pengguna').click();
+
+        }
+
+        function delete_pengguna(user_id, user_name) {
+            conf = confirm("Apakah Anda akan menghapus user " + user_name + " ?");
+            if (conf == true) {
+                $.post("./kasir/delete_pengguna.php", {
+                        idUser: user_id
+                    },
+                    function(data, status) {
+                        alert("User " + user_name + " telah berhasil dihapus.");
+                        location.reload(true);
+                    });
+            }
+        }
         </script>
-    </body>
-    </html>
+</body>
+
+</html>
