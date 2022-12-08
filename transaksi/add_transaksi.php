@@ -27,5 +27,5 @@
 	
 	$con = mysqli_connect('localhost','root','','pizza');
 	mysqli_query($con,"INSERT INTO pesanan(hargaPesanan, idUser) VALUES ('$grand_total', $user_id) ");
-	header('Location: ../admin.php');
+	header('Location: ../kasir.php');
 ?>
